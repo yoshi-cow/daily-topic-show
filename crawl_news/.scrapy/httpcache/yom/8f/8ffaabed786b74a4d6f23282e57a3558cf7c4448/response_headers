@@ -1,0 +1,19 @@
+Pragma: no-cache
+Content-Type: text/html; charset=UTF-8
+Content-Encoding: gzip
+X-App-Skey-Added: 1
+Link: <https://www.yomiuri.co.jp/?p=1079387>; rel=shortlink
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Accept-Ranges: bytes
+Date: Sat, 29 Feb 2020 04:07:20 GMT
+Via: 1.1 varnish
+Age: 1783
+X-Served-By: cache-tyo19928-TYO
+X-Cache: HIT
+X-Cache-Hits: 12
+X-Timer: S1582949241.568780,VS0,VE0
+Vary: X-Logged-In, Accept-Encoding
+Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
