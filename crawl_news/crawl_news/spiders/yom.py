@@ -22,7 +22,7 @@ class YomSpider(scrapy.Spider):
         """
         item = CrawlNewsItem()
         item['title'] = response.css('h1 ::text').extract_first().strip() # タイトル
-        body = response.css('.p-main-contents').xpath('string()').extract_first() # 本文
+        body = response.css('.p-main-contents').xpath('string()').extract_first().strip() # 本文
         result = re.search('読者会員限定です', body)
         if result:
             item['body'] = None # 本文無いのでNullにしておく

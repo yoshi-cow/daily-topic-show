@@ -31,4 +31,3 @@ class SanSpider(scrapy.Spider):
         item['jenre'] = None # ジャンル（後で機械学習で分類かける）
         item['date_now'] = datetime.date.today() # 抽出日
         yield item
-        # pass

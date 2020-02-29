@@ -1,0 +1,9 @@
+Server: nginx
+Content-Type: text/html
+Set-Cookie: LocChecked=1;expires=Sat, 29 Feb 2020 12:44:36 GMT; path=/;
+Etag: W/"5e35d8cc-4cb6"
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=5
+Expires: Sat, 29 Feb 2020 12:44:40 GMT
+Date: Sat, 29 Feb 2020 12:44:35 GMT
