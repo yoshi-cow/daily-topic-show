@@ -7,7 +7,7 @@ import datetime
 class YomSpider(scrapy.Spider):
     name = 'yom'
     allowed_domains = ['www.yomiuri.co.jp']
-    start_urls = ['http://www.yomiuri.co.jp/']
+    start_urls = ['https://www.yomiuri.co.jp/']
 
     def parse(self, response):
         '''
