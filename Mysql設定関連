@@ -14,7 +14,7 @@
    id : Primary key : 自動割り当て : INT AUTO_INCREMENT
    title : ニュースタイトル : TEXT
    body : ニュース本文 : TEXT
-   source : サイトドメイン : TEXT
+   source : サイトurl : TEXT
    jenre : ニュースジャンルー後で機械学習で設定 : TEXT
    date_now : 取得日 : DATE
 
