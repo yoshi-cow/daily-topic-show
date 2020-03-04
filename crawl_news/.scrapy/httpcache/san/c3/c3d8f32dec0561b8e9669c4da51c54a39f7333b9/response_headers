@@ -1,0 +1,8 @@
+Server: CloudFront
+Date: Sat, 29 Feb 2020 05:40:26 GMT
+Content-Type: text/html
+Location: https://www.sankei.com/
+X-Cache: Redirect from cloudfront
+Via: 1.1 508070f43e84c09a2c142165ccd11f22.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: NRT20-C2
+X-Amz-Cf-Id: A6gX0cJaBs-dzZS26b-bpdTquxAxjA2eAosnt74dSCO1lYcbbCZ-nA==

@@ -1,0 +1,9 @@
+Server: nginx
+Content-Type: text/html
+Location: /shimen/20200229ev/?iref=comtop_gnavi
+Set-Cookie: ShimenLocChecked=1;expires=Sat, 29 Feb 2020 12:43:39 GMT; path=/;
+Etag: W/"5e5a5a92-625"
+Vary: Accept-Encoding
+Cache-Control: max-age=5
+Expires: Sat, 29 Feb 2020 12:43:42 GMT
+Date: Sat, 29 Feb 2020 12:43:37 GMT

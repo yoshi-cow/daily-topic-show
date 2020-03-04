@@ -1,0 +1,14 @@
+Content-Type: text/html; charset=UTF-8
+Server: openresty
+Last-Modified: Sat, 29 Feb 2020 04:48:35 GMT
+Content-Encoding: gzip
+Date: Sat, 29 Feb 2020 06:59:54 GMT
+Etag: "573d372995e30f4c872199c489dc0f6e"
+Expires: Sat, 29 Feb 2020 07:00:28 GMT
+Cache-Control: max-age=60
+Vary: Accept-Encoding
+X-Cache: Hit from cloudfront
+Via: 1.1 2dc176a95360219fefdccced254f387b.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: NRT20-C4
+X-Amz-Cf-Id: ddThQvprBKe-0z8jhnZGK3hyXFoPybGuFnZ3znkxS2UWPlw17VhALQ==
+Age: 48

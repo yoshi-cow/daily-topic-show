@@ -1,0 +1,10 @@
+Retry-After: 0
+Location: https://www.yomiuri.co.jp/
+Accept-Ranges: bytes
+Date: Sat, 29 Feb 2020 04:06:38 GMT
+Via: 1.1 varnish
+X-Served-By: cache-tyo19926-TYO
+X-Cache: HIT
+X-Cache-Hits: 0
+Cache-Control: max-age=60, public
+Expires: Sat, 29 Feb 2020 04:07:38 GMT

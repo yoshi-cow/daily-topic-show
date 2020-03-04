@@ -1,0 +1,13 @@
+Content-Type: text/html; charset=UTF-8
+Date: Sun, 01 Mar 2020 05:00:10 GMT
+Set-Cookie: AWSALB=+fTvvTA/f3+leMm9asVQhZrd9t4Ujmm7yTeM2AGOf61EWkAkeVBh0tNU7hNdPhNmNEyXtK9bHZRFNerDmexgl/aSp/Dtt9Sw8Exq/gSsZq/5fHlRv2SnJ63S0/uE; Expires=Sun, 08 Mar 2020 05:00:10 GMT; Path=/
+Set-Cookie: AWSALBCORS=+fTvvTA/f3+leMm9asVQhZrd9t4Ujmm7yTeM2AGOf61EWkAkeVBh0tNU7hNdPhNmNEyXtK9bHZRFNerDmexgl/aSp/Dtt9Sw8Exq/gSsZq/5fHlRv2SnJ63S0/uE; Expires=Sun, 08 Mar 2020 05:00:10 GMT; Path=/; SameSite=None; Secure
+Server: Apache
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: no-cache
+Content-Language: ja
+X-Cache: Miss from cloudfront
+Via: 1.1 f5ea107910388dd712f11441721cd0ae.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: NRT20-C3
+X-Amz-Cf-Id: C1A3MgW0nRykh_WEpgbThVbWye_Nv4HGBqbacOp2U1XOun0w4kzW_Q==

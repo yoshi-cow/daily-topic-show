@@ -1,0 +1,7 @@
+Server: Apache
+Content-Type: text/html; charset=UTF-8
+Set-Cookie: LocChecked=1;expires=Sat, 29 Feb 2020 12:44:32 GMT; path=/;
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Cache-Control: max-age=3
+Date: Sat, 29 Feb 2020 12:44:32 GMT
