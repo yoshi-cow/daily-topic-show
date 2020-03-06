@@ -1,2 +1,13 @@
 [2020-03-04 23:13:26]wordcloud.py(33): 該当レコードがありません。
 [2020-03-06 10:34:58]wordcloud.py(34): 本日のニュースレコードがありません。
+[2020-03-06 13:13:45]base_any2vec.py(723): consider setting layer size to a multiple of 4 for greater performance
+[2020-03-06 14:00:47]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:08:34]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:09:11]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:10:58]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:19:13]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:20:01]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:20:30]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:04:02]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:17:04]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:43:45]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
