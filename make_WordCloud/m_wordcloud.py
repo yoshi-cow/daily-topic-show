@@ -1,5 +1,6 @@
 import MySQLdb
 import pandas as pd
+import numpy as np
 from urllib import request
 
 import MeCab
@@ -15,6 +16,8 @@ import datetime
 
 
 def main():
+
+    TODAY = str(datetime.date.today()) # ファイル名用定数
 
     ### エラーログ設定
     Err_Format = '[%(asctime)s]%(filename)s(%(lineno)d): %(message)s'
@@ -39,8 +42,7 @@ def main():
 
 
     ### dbより当日レコード取り出して、DataFrameへ
-    # query = 'SELECT * FROM news_table WHERE DATE(date_now)=CURRENT_DATE()'
-    query = "SELECT * FROM news_table WHERE date_now='2020-03-04'" 
+    query = 'SELECT * FROM news_table WHERE DATE(date_now)=CURRENT_DATE()'
     cursor.execute(query)
     if not cursor.rowcount: # レコード有無チェック。レコード無い場合は、エラーログ出力して終了
         logging.error('本日のニュースレコードがありません。')
@@ -105,7 +107,7 @@ def main():
     # 分かち書き処理
     t = Make_Tokenizer.Tokenizer(stopwords)
     docs_list = []
-    for i, record in news_df.iterrows():
+    for _, record in news_df.iterrows():
         docs_list.append(t.tokenize(record['title-body'])) # トピックモデル用
 
     # wordcloud用ldaモデル作成（トピック数１でモデル作成しWordCloudに結果を渡す）
@@ -117,15 +119,15 @@ def main():
     # wordcloudの作成と保存
     image = WordCloud(font_path='/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc', \
                         background_color='white').generate_from_frequencies(dict(lda.show_topic(0, 100)))
-    f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/' + str(datetime.date.today()) + '.png'
+    f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/' + TODAY + '.png'
     image.to_file(f_name)
 
     # 記事分類用ldaモデル作成（トピック数はとりあえず４）
     lda = LdaModel(corpus=corpus, num_topics=4, id2word=dictionary, random_state=1)
-    # 各トピックの単語5つを確率が高い順に取得
+    # 各トピックの単語３つを確率が高い順に取得
     topic_word_list = []
     for t in range(lda.num_topics):
-        topic_word_list.append(sorted(dict(lda.show_topic(t, 5)).items(), key=lambda x:x[1], reverse=True))
+        topic_word_list.append(sorted(dict(lda.show_topic(t, 3)).items(), key=lambda x:x[1], reverse=True))
 
     # 記事ごとのトピックと帰属確率を取得してnews_dfに追加
     topic_df = pd.DataFrame(index=[], columns=['topic', 'prob']) # トピックNo保存用DF
@@ -133,18 +135,34 @@ def main():
         topic_no = lda.get_document_topics(corpus_text)
         topic_df = topic_df.append(pd.Series(topic_no[0], index=topic_df.columns),ignore_index=True)
     news_df = news_df.join(topic_df)
-
-    # トピック毎に帰属確率が高い上位３記事を選択
     df_sort = news_df.sort_values(['topic', 'prob'], ascending=[True,False]) # トピック毎に帰属確率をソート
 
+    # 取得した単語をdfへ
+    word_df = pd.DataFrame(index=[], columns=['word_1', 'word_2', 'word_3'])
+    for topic in topic_word_list:
+        words = []
+        for word in topic:
+            words.append(word[0])
+        word_df = word_df.append(pd.Series(words, index=word_df.columns), ignore_index=True) 
 
+    # トピック毎に帰属確率が最も高い記事２つを選択
+    url_df = pd.DataFrame(index=[], columns=['title_1', 'source_1', 'title_2', 'source_2'])
 
+    # トピックごとの記事titleとsource抽出
+    for i in range(4):
+        temp_df = df_sort[df_sort['topic'] == i] # 該当トピックのdf取得
+        td_1 = pd.Series(list(temp_df.iloc[0, [1,3]]), index=['title_1', 'source_1']) # 確率最大の記事取得
+        if temp_df.iloc[1, 8] >= 0.985: # ２番めの記事は帰属確率が98.5%以上なら取得
+            td_2 = pd.Series(list(temp_df.iloc[1, [1,3]]), index=['title_2', 'source_2'])
+        else:
+            td_2 = pd.Series([np.nan, np.nan], index=['title_2', 'source_2'])
+        td_c = pd.concat([td_1, td_2])
+        url_df = url_df.append(td_c, ignore_index=True)
 
-
-
-
-    # W2Vの学習済みモデルを借用（https://aial.shiroyagi.co.jp/2017/02/japanese-word2vec-model-builder/）
-
+    # トピックごとに単語とtitle,souceを紐付けて、csvで保存（twitterに渡すデータ）
+    tw_df = word_df.join(url_df, how='outer') # ２番めのタイトルが無い場合に備えて外部結合
+    f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/csv_file/' + TODAY + '.csv'
+    tw_df.to_csv(f_name)
 
     # 接続閉じる
     connection.close()
