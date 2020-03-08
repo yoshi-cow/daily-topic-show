@@ -14,8 +14,21 @@ scrapy crawl san
 scrapy crawl yom
 
 
-### WordCloudの作成 ###
+### WordCloudの作成とtweetデータの作成 ###
+if test $? -eq 0
+then
+    python /home/yoshi/work_dir/daily-topic-show/make_WordCloud/m_wordcloud.py
+fi
 
 
+### twitterに投稿 ###
+# WordCloud画像ファイルがあれば実行
+WCfile=`date "+%Y-%m-%d"`.png
+if test -f /home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/$WCfile
+then
+    # WordCloudファイルを投稿
+    cd /home/yoshi/work_dir
+
+fi
 
 conda deactivate

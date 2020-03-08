@@ -61,3 +61,13 @@ Below is the traceback from this internal error.
 [2020-03-08 14:20:18]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
 [2020-03-08 14:32:50]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
 [2020-03-08 14:32:53]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:17:33]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:17:36]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:20]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:21]<ipython-input-80-4b1a66ff8d01>(176): tweet_table保存エラー発生！(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1")
+[2020-03-08 15:18:21]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 22:37:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 22:37:23]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy

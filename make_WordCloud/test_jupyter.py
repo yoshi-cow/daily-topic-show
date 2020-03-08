@@ -191,7 +191,8 @@ try:
 
 except MySQLdb.Error as e:
     # エラー内容出力して終了
-    logging.error('tweet_table保存エラー発生！')
+    erro_me = 'tweet_table保存エラー発生！' + str(e)
+    logging.error(erro_me)
     connection.close()
     sys.exit(2) # 戻り値は、shell側で終了ステータス確認に利用
 
@@ -200,3 +201,4 @@ connection.close()
 
 
 # %%
+MySQLdb.Error
