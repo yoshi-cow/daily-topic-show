@@ -163,13 +163,40 @@ for i in range(4):
     td_c = pd.concat([td_1, td_2])
     url_df = url_df.append(td_c, ignore_index=True)
 
-# 単語ｄｆとタイトルｄｆまとめて、csvで保存（twitterに渡すデータ）
+
+# tweet用データ作成日追加
+url_df['date_now'] = df_sort.iloc[0,5]
+
+# 単語ｄｆとタイトルｄｆまとめて、tweet_tableに保存
 tw_df = word_df.join(url_df, how='outer') # ２番めのタイトルが無い場合に備えて外部結合
-f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/csv_file/' + TODAY + '.csv'
-tw_df.to_csv(f_name)
+
+# MySQLにtweet用データ保存
+try:
+    # tweet_tableに保存
+    for i, record in tw_df.iterrows():
+        index_dic = {'topic_no': i}
+        record_dic = record.to_dict()
+        if type(record_dic['title_2']) == float:
+            # np.nan(float型)はSQLにINSERTできないのでNoneに置換する
+            record_dic['title_2'] = None
+            record_dic['source_2'] = None
+        record_dic.update(index_dic)
+        query = '''INSERT INTO tweet_table 
+                    (topic_no, word_1, word_2, word_3,
+                    title_1, source_1, title_2, source_2, date_now)
+                    VALUES (%(topic_no)s, %(word_1)s, %(word_2)s, %(word_3)s,
+                    %(title_1)s, %(source_1)s, %(title_2)s, %(source_2)s, %(date_now)s) '''
+        cursor.execute(query, record_dic)
+    connection.commit()
+
+except MySQLdb.Error as e:
+    # エラー内容出力して終了
+    logging.error('tweet_table保存エラー発生！')
+    connection.close()
+    sys.exit(2) # 戻り値は、shell側で終了ステータス確認に利用
 
 
-# %%
+connection.close()
 
 
 # %%

@@ -103,7 +103,7 @@ def main():
                 'Nothing', '年月', '月日', '出る']
 
 
-    ### 単語の出現数を求めてWordCloudで可視化後、トピックモデルで関連ワードごとにニュースをまとめる。
+    ### 単語の出現数を求めてWordCloudで可視化後、pngファイルで保存
     # 分かち書き処理
     t = Make_Tokenizer.Tokenizer(stopwords)
     docs_list = []
@@ -122,7 +122,10 @@ def main():
     f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/' + TODAY + '.png'
     image.to_file(f_name)
 
+
+    ### トピックモデルで関連ワードごとにニュースをまとめ、tweet用にデータをMySQLに保存
     # 記事分類用ldaモデル作成（トピック数はとりあえず４）
+    # ※学習データがかなり少ないので、残念ながら精度は厳しい・・・
     lda = LdaModel(corpus=corpus, num_topics=4, id2word=dictionary, random_state=1)
     # 各トピックの単語３つを確率が高い順に取得
     topic_word_list = []
@@ -149,7 +152,7 @@ def main():
     url_df = pd.DataFrame(index=[], columns=['title_1', 'source_1', 'title_2', 'source_2'])
 
     # トピックごとの記事titleとsource抽出
-    for i in range(4):
+    for i in range(4): # トピック数がrange()の引数
         temp_df = df_sort[df_sort['topic'] == i] # 該当トピックのdf取得
         td_1 = pd.Series(list(temp_df.iloc[0, [1,3]]), index=['title_1', 'source_1']) # 確率最大の記事取得
         if temp_df.iloc[1, 8] >= 0.985: # ２番めの記事は帰属確率が98.5%以上なら取得
@@ -159,12 +162,37 @@ def main():
         td_c = pd.concat([td_1, td_2])
         url_df = url_df.append(td_c, ignore_index=True)
 
-    # トピックごとに単語とtitle,souceを紐付けて、csvで保存（twitterに渡すデータ）
-    tw_df = word_df.join(url_df, how='outer') # ２番めのタイトルが無い場合に備えて外部結合
-    f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/csv_file/' + TODAY + '.csv'
-    tw_df.to_csv(f_name)
+    # tweet用データ作成日追加
+    url_df['date_now'] = df_sort.iloc[0,5]
 
-    # 接続閉じる
+    # 単語ｄｆとタイトルｄｆまとめて、tweet_tableに保存
+    tw_df = word_df.join(url_df, how='outer') # ２番めのタイトルが無い場合に備えて外部結合
+
+    # MySQLにtweet用データ保存
+    try:
+        # tweet_tableに保存
+        for i, record in tw_df.iterrows():
+            index_dic = {'topic_no': i}
+            record_dic = record.to_dict()
+            if type(record_dic['title_2']) == float:
+                # np.nan(float型)はSQLにINSERTできないのでNoneに置換する
+                record_dic['title_2'] = None
+                record_dic['source_2'] = None
+            record_dic.update(index_dic)
+            query = '''INSERT INTO tweet_table 
+                        (topic_no, word_1, word_2, word_3,
+                        title_1, source_1, title_2, source_2, date_now)
+                        VALUES (%(topic_no)s, %(word_1)s, %(word_2)s, %(word_3)s,
+                        %(title_1)s, %(source_1)s, %(title_2)s, %(source_2)s, %(date_now)s) '''
+            cursor.execute(query, record_dic)
+        connection.commit()
+    except MySQLdb.Error as e:
+        # エラー内容出力して終了
+        logging.error('tweet_table保存エラー発生！：', e)
+        connection.close()
+        sys.exit(2) # 戻り値は、shell側で終了ステータス確認に利用
+
+    ### 接続閉じる
     connection.close()
 
 
