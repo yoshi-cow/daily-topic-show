@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ニュースサイトからメインニュースを抽出し、WordCloudで重要単語を可視化後、
-# メインニュースの要約を作成
+# 重要単語関連記事のリンクとWordclud画像をツイートする
+# 毎朝、cronにて自動実行
 
 ### メインニュース抽出 ###
 . /home/yoshi/anaconda3/etc/profile.d/conda.sh # shell script上でcondaコマンド実行するための処理
@@ -14,21 +15,19 @@ scrapy crawl san
 scrapy crawl yom
 
 
-### WordCloudの作成とtweetデータの作成 ###
+### WordCloudの作成とtweet用データの作成 ###
 if test $? -eq 0
 then
     python /home/yoshi/work_dir/daily-topic-show/make_WordCloud/m_wordcloud.py
 fi
 
 
-### twitterに投稿 ###
-# WordCloud画像ファイルがあれば実行
+### tweetを作成し、twitterに投稿 ###
+# 実行日のWordCloud画像ファイルがあれば実行
 WCfile=`date "+%Y-%m-%d"`.png
 if test -f /home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/$WCfile
 then
-    # WordCloudファイルを投稿
-    cd /home/yoshi/work_dir
-
+    python /home/yoshi/work_dir/daily-topic-show/make_tweetbot/tweet_api.py
 fi
 
 conda deactivate
