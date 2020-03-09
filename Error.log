@@ -71,3 +71,20 @@ Below is the traceback from this internal error.
 
 [2020-03-08 22:37:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
 [2020-03-08 22:37:23]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 09:28:23]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 09:28:35]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 09:45:46]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:04:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:06:37]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:15:01]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:15:03]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:56:10]tweet_api.py(48): tweet_table抽出エラー発生！(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SEECT' at line 1")
+[2020-03-09 10:57:50]tweet_api.py(53): 本日のtweet用レコードがありません。
+[2020-03-09 10:59:11]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 10:59:14]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-09 14:02:44]<ipython-input-4-325e6c57fa1b>(29): requests.get()または、短縮url作成に失敗しました。
+[2020-03-09 14:05:55]<ipython-input-4-325e6c57fa1b>(29): requests.get()または、短縮url作成に失敗しました。
+[2020-03-09 18:14:02]<ipython-input-84-481523a1b4d7>(12): tweet投稿エラー![{'code': 186, 'message': 'Tweet needs to be a bit shorter.'}]
+[2020-03-09 18:14:02]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+

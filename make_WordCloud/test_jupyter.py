@@ -1,4 +1,4 @@
-#%% ##############################################################################
+#%%
 import MySQLdb
 import pandas as pd
 import numpy as np
@@ -15,9 +15,11 @@ import sys
 import logging
 import datetime
 
-TODAY = str(datetime.date.today())
 
-#%% ##############################################################################
+
+
+TODAY = str(datetime.date.today()) # ファイル名用定数
+
 ### エラーログ設定
 Err_Format = '[%(asctime)s]%(filename)s(%(lineno)d): %(message)s'
 logging.basicConfig(
@@ -42,7 +44,6 @@ news_df = pd.DataFrame(index=[], columns=cols)
 
 ### dbより当日レコード取り出して、DataFrameへ
 query = 'SELECT * FROM news_table WHERE DATE(date_now)=CURRENT_DATE()'
-# query = "SELECT * FROM news_table WHERE date_now='2020-03-04'" 
 cursor.execute(query)
 if not cursor.rowcount: # レコード有無チェック。レコード無い場合は、エラーログ出力して終了
     logging.error('本日のニュースレコードがありません。')
@@ -103,13 +104,12 @@ stopwords += ['てる', 'いる', 'なる', 'れる', 'する', 'ある', 'こ�
             'Nothing', '年月', '月日', '出る']
 
 
-### 単語の出現数を求めてWordCloudで可視化後、トピックモデルで関連ワードごとにニュースをまとめる。
+### 単語の出現数を求めてWordCloudで可視化後、pngファイルで保存
 # 分かち書き処理
 t = Make_Tokenizer.Tokenizer(stopwords)
 docs_list = []
-for i, record in news_df.iterrows():
+for _, record in news_df.iterrows():
     docs_list.append(t.tokenize(record['title-body'])) # トピックモデル用
-
 
 # wordcloud用ldaモデル作成（トピック数１でモデル作成しWordCloudに結果を渡す）
 dictionary = Dictionary(docs_list) # 単語とIDの紐付け
@@ -123,9 +123,13 @@ image = WordCloud(font_path='/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.
 f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/' + TODAY + '.png'
 image.to_file(f_name)
 
+# 
 
-# 記事分類用ldaモデル作成（トピック数はとりあえず４）
-lda = LdaModel(corpus=corpus, num_topics=4, id2word=dictionary, random_state=1)
+
+### トピックモデルで関連ワードごとにニュースをまとめ、tweet用にデータをMySQLに保存
+# 記事分類用ldaモデル作成（トピック数は３。データ少ないし、ツィート数の上限もあるので３でも厳しいかも・・・）
+# ※学習データがかなり少ないので、残念ながら精度は厳しい・・・
+lda = LdaModel(corpus=corpus, num_topics=4, id2word=dictionary, random_state=1) #------------------------------------------
 # 各トピックの単語３つを確率が高い順に取得
 topic_word_list = []
 for t in range(lda.num_topics):
@@ -137,23 +141,21 @@ for corpus_text in corpus: # 各記事ごとのトピックNoと帰属確率を�
     topic_no = lda.get_document_topics(corpus_text)
     topic_df = topic_df.append(pd.Series(topic_no[0], index=topic_df.columns),ignore_index=True)
 news_df = news_df.join(topic_df)
-df_sort = news_df.sort_values(['topic', 'prob'], ascending=[True,False]) # トピック毎に帰属確率を降順でソート
+df_sort = news_df.sort_values(['topic', 'prob'], ascending=[True,False]) # トピック毎に帰属確率をソート
 
-
-# 単語抽出
+# 取得した単語をdfへ
 word_df = pd.DataFrame(index=[], columns=['word_1', 'word_2', 'word_3'])
 for topic in topic_word_list:
     words = []
     for word in topic:
         words.append(word[0])
-    word_df = word_df.append(pd.Series(words, index=word_df.columns), ignore_index=True)
-
+    word_df = word_df.append(pd.Series(words, index=word_df.columns), ignore_index=True) 
 
 # トピック毎に帰属確率が最も高い記事２つを選択
 url_df = pd.DataFrame(index=[], columns=['title_1', 'source_1', 'title_2', 'source_2'])
 
-# 記事抽出
-for i in range(4):
+# トピックごとの記事titleとsource抽出
+for i in range(4): # トピック数がrange()の引数 #------------------------------------------
     temp_df = df_sort[df_sort['topic'] == i] # 該当トピックのdf取得
     td_1 = pd.Series(list(temp_df.iloc[0, [1,3]]), index=['title_1', 'source_1']) # 確率最大の記事取得
     if temp_df.iloc[1, 8] >= 0.985: # ２番めの記事は帰属確率が98.5%以上なら取得
@@ -162,7 +164,6 @@ for i in range(4):
         td_2 = pd.Series([np.nan, np.nan], index=['title_2', 'source_2'])
     td_c = pd.concat([td_1, td_2])
     url_df = url_df.append(td_c, ignore_index=True)
-
 
 # tweet用データ作成日追加
 url_df['date_now'] = df_sort.iloc[0,5]
@@ -188,7 +189,6 @@ try:
                     %(title_1)s, %(source_1)s, %(title_2)s, %(source_2)s, %(date_now)s) '''
         cursor.execute(query, record_dic)
     connection.commit()
-
 except MySQLdb.Error as e:
     # エラー内容出力して終了
     erro_me = 'tweet_table保存エラー発生！' + str(e)
@@ -196,9 +196,8 @@ except MySQLdb.Error as e:
     connection.close()
     sys.exit(2) # 戻り値は、shell側で終了ステータス確認に利用
 
-
+### 接続閉じる
 connection.close()
 
 
 # %%
-MySQLdb.Error
