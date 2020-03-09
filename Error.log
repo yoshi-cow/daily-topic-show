@@ -1,0 +1,73 @@
+[2020-03-04 23:13:26]wordcloud.py(33): 該当レコードがありません。
+[2020-03-06 10:34:58]wordcloud.py(34): 本日のニュースレコードがありません。
+[2020-03-06 13:13:45]base_any2vec.py(723): consider setting layer size to a multiple of 4 for greater performance
+[2020-03-06 14:00:47]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:08:34]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:09:11]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:10:58]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:19:13]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:20:01]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 14:20:30]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:04:02]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:17:04]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-06 15:43:45]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-07 08:10:33]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-07 09:03:37]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-07 16:59:11]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-07 16:59:14]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 10:03:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 10:03:22]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 10:20:12]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 10:20:13]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 11:43:07]<ipython-input-28-2dc9b9745233>(14): tweet_table保存エラー発生！
+[2020-03-08 11:43:07]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 12:05:50]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:05:51]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:07:53]<ipython-input-32-2dc9b9745233>(14): tweet_table保存エラー発生！
+[2020-03-08 12:07:53]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 12:17:47]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:17:48]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:18:40]<ipython-input-38-c7f1eac3b4e0>(12): tweet_table保存エラー発生！
+[2020-03-08 12:18:40]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 12:23:29]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:23:30]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:24:07]<ipython-input-42-f75f5927f61d>(14): tweet_table保存エラー発生！
+[2020-03-08 12:24:07]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 12:39:19]<ipython-input-49-b2d101159f4e>(15): tweet_table保存エラー発生！
+[2020-03-08 12:46:31]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:46:33]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:47:01]<ipython-input-53-df1862612ecb>(20): tweet_table保存エラー発生！
+[2020-03-08 12:47:01]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 12:57:22]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 12:57:23]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 13:32:00]<ipython-input-64-52f37c93e2df>(22): tweet_table保存エラー発生！
+[2020-03-08 13:32:00]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 13:56:00]<ipython-input-71-0f82c19077aa>(21): tweet_table保存エラー発生！
+[2020-03-08 14:14:32]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 14:14:34]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 14:20:16]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 14:20:18]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 14:32:50]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 14:32:53]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:17:33]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:17:36]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:20]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 15:18:21]<ipython-input-80-4b1a66ff8d01>(176): tweet_table保存エラー発生！(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1")
+[2020-03-08 15:18:21]ultratb.py(155): Internal Python error in the inspect module.
+Below is the traceback from this internal error.
+
+[2020-03-08 22:37:19]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+[2020-03-08 22:37:23]ldamodel.py(934): too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy

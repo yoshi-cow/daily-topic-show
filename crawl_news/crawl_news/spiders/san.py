@@ -27,7 +27,7 @@ class SanSpider(scrapy.Spider):
         item = CrawlNewsItem()
         item['title'] = response.css('#__r_article_title__ ::text').extract_first().strip() # タイトル
         item['body'] = response.css('.post_content').xpath('string()').extract_first().strip() # 本文
-        item['source'] = self.allowed_domains[0] # 対象サイト
+        item['source'] = response.url # 対象ページのurl
         item['jenre'] = None # ジャンル（後で機械学習で分類かける）
         item['date_now'] = datetime.date.today() # 抽出日
         yield item

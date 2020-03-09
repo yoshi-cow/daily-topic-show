@@ -1,5 +1,6 @@
-■MySQLへのテーブル作成
+■MySQLテーブル定義■
 
+■crawlデータ保存用
 ・db名：news_db
   CREATE DATABASE news_db DEFAULT CHARACTER SET utf8mb4;
 
@@ -11,12 +12,12 @@
   GRANT ALL ON news_db.* TO 'news_scraper'@'localhost';
 
 ・table名： news_table
-   id : Primary key : 自動割り当て : INT AUTO_INCREMENT
-   title : ニュースタイトル : TEXT
-   body : ニュース本文 : TEXT
-   source : サイトドメイン : TEXT
-   jenre : ニュースジャンルー後で機械学習で設定 : TEXT
-   date_now : 取得日 : DATE
+  　id : Primary key : 自動割り当て : INT AUTO_INCREMENT
+  　title : ニュースタイトル : TEXT
+  　body : ニュース本文 : TEXT
+  　source : サイトurl : TEXT
+  　jenre : ニュースジャンルー後で機械学習で設定 : TEXT
+  　date_now : 取得日 : DATE
 
    USE news_db
    CREATE TABLE news_table (
@@ -27,5 +28,36 @@
     -> jenre TEXT,
     -> date_now DATE
     -> );
+
+
+■twitter投稿用
+・ユーザー名：news_scraper
+・db名：news_db
+・table名：tweet_table
+　　id : Primary key : 自動割り当て : INT AUTO_INCREMENT
+　　topic_no: トピックNo：INT
+　　word_1：トピックワード１ : TEXT
+　　word_2：トピックワード２ : TEXT
+　　word_3：トピックワード３ : TEXT
+　　title_1：ニュースタイトル１ : TEXT
+　　source_1：ニュースurl１ : TEXT
+　　title_2：ニュースタイトル２ : TEXT
+　　source_2：ニュースurl１ : TEXT
+　　date_now：取得日 : DATE
+
+    mysql> CREATE TABLE tweet_table (
+        -> id INT AUTO_INCREMENT PRIMARY KEY,
+        -> topic_no INT,
+        -> word_1 TEXT,
+        -> word_2 TEXT,
+        -> word_3 TEXT,
+        -> title_1 TEXT,
+        -> source_1 TEXT,
+        -> title_2 TEXT,
+        -> source_2 TEXT,
+        -> date_now DATE
+        -> );
+
+
 
 

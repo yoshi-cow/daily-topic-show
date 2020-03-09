@@ -28,7 +28,7 @@ class YomSpider(scrapy.Spider):
             item['body'] = None # 本文無いのでNullにしておく
         else:
             item['body'] = body
-        item['source'] = self.allowed_domains[0] # 対象サイト
+        item['source'] = response.url # 対象ページのurl
         item['jenre'] = None # ジャンル（後で機械学習で分類かける）
         item['date_now'] = datetime.date.today() # 抽出日
         yield item
