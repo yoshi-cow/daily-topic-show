@@ -26,7 +26,7 @@ def main():
         level=logging.WARNING
     )
 
-
+    
     # mysqlへの接続
     connection = MySQLdb.connect(
         host='127.0.0.1', user='news_scraper', passwd='password', db='news_db', charset='utf8mb4'
@@ -104,6 +104,9 @@ def main():
         tweet = tweet + word_list + url_list # 単語とurl連結
     tweet = tweet[:-1] # 最後の'\n'削除
 
+    # -------------
+    logging.error("debug_test")
+
     # WordCloud画像セット
     f_name = "/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/" + TODAY + ".png"
 
@@ -122,10 +125,19 @@ def main():
             time.sleep(1) # twitter api負荷軽減用
             api.update_with_media(filename=f_name, status=tweet)
         except tweepy.TweepError as e:
-            err_me = 'tweet投稿エラー!' + str(e)
+            err_me = '文字数オーバーエラー！単語数さらに減らして再実施します。' + str(e)
             logging.error(err_me)
-            connection.close()
-            sys.exit(5) # 戻り値は、shell側で終了ステータス確認に利用
+            # tweet文字数オーバーなので、さらに文字数減らす。（最初の３単語とurlを除く）
+            s_o = re.search(r'\n', tweet)
+            tweet = tweet[s_o.start()+1:]
+            try:
+                time.sleep(1) # twitter api負荷軽減用
+                api.update_with_media(filename=f_name, status=tweet)
+            except tweepy.TweepError as e:
+                # ３回エラーしたので投稿止める
+                erro_me = 'またまたエラーです！エラー内容を確認してください。' + str(e)
+                connection.close()
+                sys.exit(5) # 戻り値は、shell側で終了ステータス確認に利用
 
     ### DBのcommenction閉じる
     connection.close()

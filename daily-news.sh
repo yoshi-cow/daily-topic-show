@@ -9,18 +9,18 @@
 conda activate daily # 仮想環境アクティベイト
 # 各サイトよりニュースを抽出しMySQLに保存
 cd /home/yoshi/work_dir/daily-topic-show/crawl_news
-scrapy crawl asa 
-scrapy crawl mai
-scrapy crawl san
-scrapy crawl yom
+scrapy crawl asa -s RETRY_TIMES=1
+scrapy crawl mai -s RETRY_TIMES=1
+scrapy crawl san -s RETRY_TIMES=1
+scrapy crawl yom -s RETRY_TIMES=1
 
+. ~/work_dir/ex.sh
 
 ### WordCloudの作成とtweet用データの作成 ###
 if test $? -eq 0
 then
     python /home/yoshi/work_dir/daily-topic-show/make_WordCloud/m_wordcloud.py
 fi
-
 
 ### tweetを作成し、twitterに投稿 ###
 # 実行日のWordCloud画像ファイルがあれば実行
