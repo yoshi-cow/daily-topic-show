@@ -104,8 +104,6 @@ def main():
         tweet = tweet + word_list + url_list # 単語とurl連結
     tweet = tweet[:-1] # 最後の'\n'削除
 
-    # -------------
-    logging.error("debug_test")
 
     # WordCloud画像セット
     f_name = "/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/" + TODAY + ".png"
