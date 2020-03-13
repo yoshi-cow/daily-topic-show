@@ -122,11 +122,13 @@ def main():
     f_name = '/home/yoshi/work_dir/daily-topic-show/make_WordCloud/wordclud_file/' + TODAY + '.png'
     image.to_file(f_name)
 
+    # 
+
 
     ### トピックモデルで関連ワードごとにニュースをまとめ、tweet用にデータをMySQLに保存
-    # 記事分類用ldaモデル作成（トピック数は３。データ少ないし、ツィート数の上限もあるので３でも厳しいかも・・・）
+    # 記事分類用ldaモデル作成（トピック数は４。データ少ないし、ツィート数の上限もあるので厳しいかも・・・）
     # ※学習データがかなり少ないので、残念ながら精度は厳しい・・・
-    lda = LdaModel(corpus=corpus, num_topics=3, id2word=dictionary, random_state=1)
+    lda = LdaModel(corpus=corpus, num_topics=4, id2word=dictionary, random_state=1)
     # 各トピックの単語３つを確率が高い順に取得
     topic_word_list = []
     for t in range(lda.num_topics):
@@ -152,7 +154,7 @@ def main():
     url_df = pd.DataFrame(index=[], columns=['title_1', 'source_1', 'title_2', 'source_2'])
 
     # トピックごとの記事titleとsource抽出
-    for i in range(3): # トピック数がrange()の引数
+    for i in range(4): # トピック数がrange()の引数
         temp_df = df_sort[df_sort['topic'] == i] # 該当トピックのdf取得
         td_1 = pd.Series(list(temp_df.iloc[0, [1,3]]), index=['title_1', 'source_1']) # 確率最大の記事取得
         if temp_df.iloc[1, 8] >= 0.985: # ２番めの記事は帰属確率が98.5%以上なら取得

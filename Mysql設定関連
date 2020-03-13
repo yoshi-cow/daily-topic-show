@@ -1,6 +1,6 @@
 ■MySQLテーブル定義■
 
-■crawlデータ保存用
+■crawlデータ保存
 ・db名：news_db
   CREATE DATABASE news_db DEFAULT CHARACTER SET utf8mb4;
 
@@ -19,18 +19,8 @@
   　jenre : ニュースジャンルー後で機械学習で設定 : TEXT
   　date_now : 取得日 : DATE
 
-   USE news_db
-   CREATE TABLE news_table (
-    -> id INT AUTO_INCREMENT PRIMARY KEY,
-    -> title TEXT,
-    -> body TEXT,
-    -> source TEXT,
-    -> jenre TEXT,
-    -> date_now DATE
-    -> );
 
-
-■twitter投稿用
+■twitter投稿用データ保存
 ・ユーザー名：news_scraper
 ・db名：news_db
 ・table名：tweet_table
@@ -45,18 +35,6 @@
 　　source_2：ニュースurl１ : TEXT
 　　date_now：取得日 : DATE
 
-    mysql> CREATE TABLE tweet_table (
-        -> id INT AUTO_INCREMENT PRIMARY KEY,
-        -> topic_no INT,
-        -> word_1 TEXT,
-        -> word_2 TEXT,
-        -> word_3 TEXT,
-        -> title_1 TEXT,
-        -> source_1 TEXT,
-        -> title_2 TEXT,
-        -> source_2 TEXT,
-        -> date_now DATE
-        -> );
 
 
 
